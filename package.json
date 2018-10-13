@@ -1,0 +1,32 @@
+{
+  "name": "google-cloud-function-offline-template-with-typescript",
+  "version": "0.1.0",
+  "description": "Template for google cloud function that will support running offline and multiple deployment",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start-function-emulator" : "functions start",
+    "deploy-offline-function-service1" : "functions deploy serviceFunction --trigger-http",
+    "deploy-offline-function-service2" : "functions deploy serviceFunction2 --trigger-http",
+    "deploy-all-service": "npm-run-all --serial deploy-offline-function-service1 deploy-offline-function-service2",
+    "start": "npm-run-all --serial start-function-emulator deploy-all-service",
+    "deploy-function-service1" : "gcloud functions deploy serviceFunction --runtime nodejs8 --trigger-http",
+    "deploy-function-service2" : "gcloud functions deploy serviceFunction2 --runtime nodejs8 --trigger-http",
+    "deploy": "npm-run-all --serial deploy-function-service1 deploy-function-service2"
+  },
+  "author": "Anupol Anekpattanakij",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.3",
+    "prettier": "^1.14.2",
+    "serverless-google-cloudfunctions": "^1.1.0",
+    "serverless-offline": "^3.25.7",
+    "serverless-plugin-typescript": "^1.1.5",
+    "serverless-webpack": "^5.2.0",
+    "tslint-config-prettier": "^1.14.0",
+    "typescript": "^2.2.2",
+    "typescript-eslint-parser": "^13.0.0"
+  }
+}
